@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Spotify - Modern Music Streaming</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Poppins', montserrat ;
+            margin: 100;
+        }
+        .horizontal-sidebar {
+            display: flex;
+            justify-content: space-around; /* Space items evenly */
+            align-items: center; /* Center items vertically */
+            background-color: #006600; /* Background color for the sidebar */
+            padding: 10px 0; /* Add some padding */
+            transition: width 0.3s ease; /* Smooth transition for width */
+        }
+        .horizontal-sidebar div {
+            cursor: hand;
+            color:  #000099; /* Default text color */
+            transition: color 0.3s; /* Smooth color transition */
+        }
+        .horizontal-sidebar div:hover {
+            color: #000000; /* Change color on hover */
+        }
+        .section {
+            display: block;
+        }
+        .section.hidden {
+            display: none;
+        }
+         #resizable-sidebar {
+            min-width: 1000px;
+            max-width: 1000%;
+            transition: width 1.9s ease;
+        }
+        .logo {
+            width: 200px; /* Set the width of the logo */
+            height: auto; /* Maintain aspect ratio */
+        }
+       . @media (max-width: 1000px) {
+  iframe {
+    height: 500px;
+  }
+}
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+<div class="grid grid-cols-[auto_1fr] h-screen">
+    <!-- Sidebar -->
+    <aside
+        id="resizable-sidebar"
+        class="bg-black text-white p-5"
+        style="width: 100%; transition: width 0.9s ease;"
+    >
+        <div class="horizontal-sidebar">
+            <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2023/05/Spotify_Full_Logo_RGB_Black.png" alt="Spotify Logo" class="logo"/>
+            <div onclick="showSection('home')">
+                <i class="fas fa-home mr-2"></i> Home
+            </div>
+            <div onclick="showSection('search')">
+                <i class="fas fa-search mr-2"></i> Search
+            </div>
+            <div onclick="showSection('library')">
+                <i class="fas fa-book mr-2"></i> Library
+            </div>
+            <div onclick="showSection('create-playlist')">
+                <i class="fas fa-list mr-2"></i> Create Playlist
+            </div>
+            <div onclick="showSection('liked-songs')">
+                <i class="fas fa-heart mr-2"></i> Liked Songs 
+            </div>
+        </div>
+    </aside>
+    <!-- Main Content -->
+    <main class="col-span-3 p-5 overflow-y-auto">
+        <div class="section" id="home">
+            <!-- Added Image Section -->
+            <div class="mb-8">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXl6wuj0Agqua1CViTn5Tu9h0T7ANkyn5Ozg&s" alt=" medium Range" class="w-full h-auto rounded-lg"/>
+            </div>
+            <div class="bg-gray-800 p-3 rounded-full flex items-center mb-8">
+                <i class="fas fa-search text-gray-400 mr-3"></i>
+                <input class="bg-transparent border-none text-white w-full focus:outline-none" onkeyup="searchMusic(this.value)" placeholder="Search for Artists, Songs, or Podcasts" type="text"/>
+            </div>
+            <section class="mb-12">
+                <h2 class="text-2xl font-bold mb-5">Made For You</h2>
+                <div class="grid grid-cols -2 md:grid-cols-4 gap-5">
+                    <div class="album-container relative">
+                        <div class="bg-gray-800 p-5 rounded-lg hover:bg-gray-700 transition album-hover">
+                            <img alt="Album cover with abstract art" class="rounded-lg mb-3 w-full" height="300" loading="lazy" src="https://storage.googleapis.com/a1aa/image/4t3yjle5SxwGNao2YT3U7pXBMeXBe8T2O5hYkUA2vk9jf4fgC.jpg" width="300"/>
+                            <div class="font-semibold">Discover Weekly</div>
+                            <div class="text-gray-400 text-sm">Your weekly mixtape of fresh music</div>
+                            <button class="play-button" onclick="playTrack('Discover Weekly')">
+                                <i class="fas fa-play text-white"></i>
+                            </button>
+                            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZEVXcO6Bvi7nVFuH?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                     <div class="album-container relative">
+                        <div class="bg-gray-800 p-5 rounded-lg hover:bg-gray-700 transition album-hover">
+                            <img alt="Album cover with a scenic landscape" class="rounded-lg mb-3 w-full" height="300" loading="lazy" src="https://storage.googleapis.com/a1aa/image/s6IVAynwSB75EVHZ7Uea46YQ0PevSb7HbHe6YJKQEVKof4fgC.jpg" width="300"/>
+                            <div class="font-semibold">Daily Mix 1</div>
+                            <div class="text-gray-400 text-sm">A mix of your favorite songs</div>
+                            <button class="play-button" onclick="playTrack('Daily Mix 1')">
+                                <i class="fas fa-play text-white"></i>
+                            </button>
+                            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1E36cRJNTazwZi?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <div class="album-container relative">
+                        <div class="bg-gray-800 p-5 rounded-lg hover:bg-gray-700 transition album-hover">
+                            <img alt="Album cover with a city skyline" class="rounded-lg mb-3 w-full" height="300" loading="lazy" src="https://storage.googleapis.com/a1aa/image/2Oyvsj9ZiHI6NtiTrVkwVZ7d2IDJAsfE9pXbRfgYrzS3PePoA.jpg" width="300"/>
+                            <div class="font-semibold">Daily Mix 2</div>
+                            <div class="text-gray-400 text-sm">A mix of your favorite songs</div>
+                            <button class="play-button" onclick="playTrack('Daily Mix 2')">
+                                <i class="fas fa-play text-white"></i>
+                            </button>
+                            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1E3959er2lsfxA?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <div class="album-container relative">
+                        <div class="bg-gray-800 p-5 rounded-lg hover:bg-gray-700 transition album-hover">
+                            <img alt="Album cover with a colorful abstract design" class="rounded-lg mb-3 w-full" height="300" loading="lazy" src="https://storage.googleapis.com/a1aa/image/3eucnAVnLGX2ayQfXFAjoN3Q8BfrwBXMHdH1e1WLy6xKfxfBF.jpg" width="300"/>
+                            <div class="font-semibold">Daily Mix 3</div>
+                            <div class="text-gray-400 text-sm">A mix of your favorite songs</div>
+                            <button class="play-button" onclick="playTrack('Daily Mix 3')">
+                                <i class="fas fa-play text-white"></i>
+                            </button>
+                            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1E39rPgtNerYL0?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <div class="album-container relative">
+                        <div class="bg-gray-800 p-5 rounded-lg hover:bg-gray-700 transition album-hover">
+                            <img alt="Album cover with a colorful abstract design" class="rounded-lg mb-3 w-full" height="300" loading="lazy" src="https://i1.sndcdn.com/artworks-000476906463-c9vsj6-t500x500.jpg" width="300"/>
+                            <div class="font-semibold">Release-Radar</div>
+                            <div class="text-gray-400 text-sm">A mix of your favorite Release songs</div>
+                            <button class="play-button" onclick="playTrack('Release-Radar')">
+                                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZEVXbgEPlH7gSxOF?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                </div>
+<div class="album-container relative">
+<div class="bg-gray-800 p-5 rounded-lg hover:bg-gray-700 transition album-hover">
+                            <img alt="Album cover with a colorful abstract design" class="rounded-lg mb-3 w-full" height="300" loading="lazy" src="https://mosaic.scdn.co/640/ab67616d00001e02103890cd93d2c659fb899affab67616d00001e021b717966ea71ba176787db75ab67616d00001e02cb2b4d969106b396a21b4584ab67616d00001e02d0cc7891ad584beb8a3665a1" width="300"/>
+                            <div class="font-semibold">Bhajan Mix</div>
+                            <div class="text-gray-400 text-sm">A mix of your favorite Bhajan  songs</div>
+                            <button class="play-button" onclick="playTrack('Bhajan Mix')">
+                                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1EIhgpT7qExmcp?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                </div>
+<div class="album-container relative">
+                        <div class="bg-gray-800 p-5 rounded-lg hover:bg-gray-700 transition album-hover">
+                            <img alt="Album cover with a colorful abstract design" class="rounded-lg mb-3 w-full" height="300" loading="lazy" src="https://i.scdn.co/image/ab67706f00000002e73a174755efa17723bd1419" width="300"/>
+                            <div class="font-semibold">Hot Hits telegu</div>
+                            <div class="text-gray-400 text-sm">A mix of your favorite Release songs</div>
+                            <button class="play-button" onclick="playTrack('Hot Hits telegu')">
+                                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX6XE7HRLM75P?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                </div>
+<div class="album-container relative">
+                        <div class="bg-gray-800 p-5 rounded-lg hover:bg-gray-700 transition album-hover">
+                            <img alt="Album cover with a colorful abstract design" class="rounded-lg mb-3 w-full" height="300" loading="lazy" src="https://i.scdn.co/image/ab67706f00000002370bdf8f0b9335e030584078" width="300"/>
+                            <div class="font-semibold">Hot Hits punjabi</div>
+                            <div class="text-gray-400 text-sm">A mix of your favorite Release songs</div>
+                            <button class="play-button" onclick="playTrack('Hot Hits punjabi')">
+                                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWXVJK4aT7pmk?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>     
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2 class="text-2xl font-bold mb-5">Recently Played</h2>
+                <div class="bg-gray-800 p-5 rounded-lg hover:bg-gray-700 transition">
+                    <img alt="Album cover for Today's Top Hits" class="rounded-lg mb-3" height="300" src="https://storage.googleapis.com/a1aa/image/uF5hfRnFo1QmG62fHN1vJ4NfRwpGPxngf9hzTPT4HfreKBfDKA.jpg" width="300"/>
+                    <div class="font-semibold">Today's Top Hits</div>
+                    <div class="text-gray-400 text-sm">The hottest tracks right now</div>
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+                <div class="bg-gray-800 p-5 rounded-lg hover:bg-gray-700 transition">
+                    <img alt="Album cover for Chill Mix" class="rounded-lg mb-3" height="300" src="https://storage.googleapis.com/a1aa/image/8Qz2b2ZNuJKxGVivGGUqQlVKi0V22eWavxVqL14LfluvE8HUA.jpg" width="300"/>
+                    <div class="font-semibold">Chill Mix</div>
+                    <div class="text-gray-400 text-sm">Relaxing music for your day</div>
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1EVHGWrwldPRtj?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+                <div class="bg-gray-800 p-5 rounded-lg hover:bg-gray-700 transition">
+                    <img alt="Album cover for Rock Classics" class="rounded-lg mb-3" height="300" src="https://storage.googleapis.com/a1aa/image/G1LxPbWSpCY6LNotRV1sgHrFaqNWCJdlUEY1QNckILgLBfDKA.jpg" width="300"/>
+                    <div class="font-semibold">Rock Classics</div>
+                    <div class="text-gray-400 text-sm">Greatest rock songs of all time</div>
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWXRqgorJj26U?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+                <div class="bg-gray-800 p-5 rounded-lg hover:bg-gray-700 transition">
+                    <img alt="Album cover for Punjabi Dance Party Hits" class="rounded-lg mb-3" height="300" src="https://mosaic.scdn.co/640/ab67616d00001e022a816203c7c42d26c7d6ddafab67616d00001e0292ee1100f2280035c8a02793ab67616d00001e02cc87d0fb7320196284c47162ab67616d00001e02dc738516781bb1a0d9ae1939" width="300"/>
+                    <div class="font-semibold">Punjabi Dance Party Hits</div>
+                    <div class="text-gray-400 text-sm">Get ready to dance!</div>
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3xMjKrSiB5Kc7Mv67ulyqv?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+<div class="bg-gray-800 p-5 rounded-lg hover:bg-gray-700 transition">
+                    <img alt="Album cover for Gaming Magic Records" class="rounded-lg mb-3" height="300" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2322010/extras/INT9_PC_Valhalla-Combat-Montage-SHORT_Legal-ESRB.gif" width="300"/>
+                    <div class="font-semibold">Gaming Magic Records</div>
+                    <div class="text-gray-400 text-sm">magic records!</div>
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5AHH67GYsljwoB1q6UGvWg?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+            </section>
+        </div>
+                    <!-- Additional album containers here -->
+                </div>
+            </section>
+        </div>
+        <div class="section hidden" id="search">
+<div class="mb-8">
+            <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2021/05/Search_Filters.gif" alt=" medium Range" class="w-full h-auto rounded-lg"/>
+            </div>
+<div class="mb-8">
+            <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2021/05/Lyric_Search.gif" alt=" medium Range" class="w-full h-auto rounded-lg"/>
+            </div>
+<div class="mb-8">
+            <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2021/05/Voice_Functionality.jpg" alt=" medium Range" class="w-full h-auto rounded-lg"/>
+            </div>
+            <div class="bg-gray-800 p-3 rounded-full flex items-center mb-8">
+                <i class="fas fa-search text-gray-400 mr-3"></i>
+                <input class="bg-transparent border-none text-white w-full focus:outline-none" placeholder="Search for Artists, Songs, Podcasts, or Moods" type="text" onkeyup="searchMusic(this.value)"/>
+            </div>
+            <section>
+                <h2 class="text-2xl font-bold mb-5">Search Results</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-5" id="search-results">
+                    <!-- Search results will be displayed here -->
+                </div>
+            </section>
+        </div>
+        <div class="section hidden" id="library">
+<div class="mb-8">
+            <img src="https://th.bing.com/th/id/OIP.DCdBE9qq_boZDZs1tDKgJAHaEo?w=1680&h=1050&rs=1&pid=ImgDetMain" alt=" medium Range" class="w-full h-auto rounded-lg"/>
+            </div>
+            <h2 class="text-2xl font-bold mb-5">Your Library</h2>
+            <div class="space-y-5">
+                                <iframe allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen="" frameborder="0" height="352" loading="lazy" src="https://open.spotify.com/embed/playlist/652a60BpK9aMOampZX057f?utm_source=generator" style="border-radius:12px" width="100%"></iframe>
+                <iframe allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen="" frameborder="0" height="352" loading="lazy" src="https://open.spotify.com/embed/playlist/37i9dQZF1FoJq7FYS9fKtH?utm_source=generator" style="border-radius:12px" width="100%"></iframe>
+                <iframe allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen="" frameborder="0" height="352" loading="lazy" src="https://open.spotify.com/embed/album/5Jkd47JEaCU1g4DcGBnHm3?utm_source=generator" style="border-radius:12px" width="100%"></iframe>
+                <iframe allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen="" frameborder="0" height="352" loading="lazy" src="https://open.spotify.com/embed/album/2Z1LgolP3fqxEJ89MS7n9C?utm_source=generator" style="border-radius:12px" width="100%"></iframe>
+                <iframe allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen="" frameborder="0" height="352" loading="lazy" src="https://open.spotify.com/embed/album/36DaAZreJ2iN4oPZ8HBUeU?utm_source=generator" style="border-radius:12px" width="100%"></iframe>
+                <iframe allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen="" frameborder="0" height="352" loading="lazy" src="https://open.spotify.com/embed/album/12sC6UjMWz6EaxnzyfCNMe?utm_source=generator" style="border-radius:12px" width="100%"></iframe>
+                <iframe allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen="" frameborder="0" height="352" loading="lazy" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX18jTM2l2fJY?utm_source=generator" style="border-radius:12px" width="100%"></iframe>
+                <iframe allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen="" frameborder="0" height="352" loading="lazy" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX9lzz0FRAxgl?utm_source=generator" style="border-radius:12px" width="100%"></iframe>
+                <iframe allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen="" frameborder="0" height="352" loading="lazy" src="https://open.spotify.com/embed/playlist/2kgioiLClPKMXq0NXXpOCq?utm_source=generator" style="border-radius:12px" width="100%"></iframe>
+                <iframe allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen="" frameborder="0" height="352" loading="lazy" src="https://open.spotify.com/embed/playlist/4ZkhaVSe4CpHvlnO5WI7ke?utm_source=generator" style="border-radius:12px" width="100%"></iframe>
+                <iframe allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen="" frameborder="0" height="352" loading="lazy" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX0XUfTFmNBRM?utm_source=generator" style="border-radius:12px" width="100%"></iframe>
+                <iframe allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen="" frameborder="0" height="352" loading="lazy" src="https://open.spotify.com/embed/album/56bqyn7qEMH0yagNm8Jheu?utm_source=generator" style="border-radius:12px" width="100%"></iframe>
+                <iframe allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen="" frameborder="0" height="352" loading="lazy" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX8xfQRRX1PDm?utm_source=generator" style="border-radius:12px" width="100%"></iframe>
+                <!-- Additional library content here -->
+            </div>
+        </div>
+        <div class="section hidden" id="create-playlist">
+<div class="mb-8">
+            <img src="https://images.fastcompany.com/image/upload/f_webp,q_auto,c_fit/wp-cms-2/2024/10/002-91213700-spotify-ai-cover-art.jpg" alt=" medium Range" class="w-full h-auto rounded-lg"/>
+            </div>
+            <h2 class="text-2xl font-bold mb-5">Create Playlist</h2>
+<div class="space-y-5">
+ <iframe allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen="" frameborder="0" height="352" loading="lazy" src="https://open.spotify.com/embed/playlist/652a60BpK9aMOampZX057f?utm_source=generator" style="border-radius:12px" width="100%"></iframe>
+                <iframe style="border-radius: 12px; width: 100%; height: 352px; border: none; overflow: hidden;"src="https://open.spotify.com/embed/playlist/37i9dQZF1DWVDCraF986xg?utm_source=generator"
+  frameBorder="0"
+  allowfullscreen
+  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+  loading="lazy"
+></iframe>
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/652a60BpK9aMOampZX057f?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1EIdt7tQbR8QDN?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX8kCxFQYFRx3?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1FanD9T9Us7PLE?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWTwzVdyRpXm1?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <!-- <p>This is the create playlist section.</p>-->
+        </div>
+            </section>
+        </div>
+        <div class="section hidden" id="liked-songs">
+<div class="mb-8">
+            <img src="https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da849d25907759522a25b86a3033" alt=" medium Range" class="w-full h-auto rounded-lg"/>
+            </div>
+            <h2 class="text-2xl font-bold mb-5">Liked Songs</h2>
+            <div id="liked-songs-list">
+                <div class="space-y-5">
+               <!-- <p>No liked songs yet.</p>-->
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4tyjHfJlUd9OXb6hpzxkWR?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7gV5tfF1t9FThn2w4gqI8F?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </div>
+    </main>
+    <!-- Resize Handle -->
+    <div
+        id="resize-handle"
+        class="w-2 bg-gray-800 cursor-col-resize hover:bg-gray-700"
+        style="height: 100%;"
+    ></div>
+</div>
+<script>
+    const sidebar = document.getElementById('resizable-sidebar');
+    const resizeHandle = document.getElementById('resize-handle');
+    let isResizing = false;
+
+    // Load sidebar width from localStorage
+    const savedWidth = localStorage.getItem('sidebarWidth');
+    if (savedWidth) {
+        sidebar.style.width = `${savedWidth}px`;
+    }
+
+    resizeHandle.addEventListener('mousedown', (e) => {
+        isResizing = true;
+        document.body.style.cursor = 'col-resize';
+        e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (isResizing) {
+            const newWidth = Math.max(200, Math.min(window.innerWidth, e.clientX));
+            sidebar.style.width = `${newWidth}px`;
+        }
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (isResizing) {
+            isResizing = false;
+            document.body.style.cursor = 'default';
+            localStorage.setItem('sidebarWidth', sidebar.offsetWidth);
+        }
+    });
+
+    function showSection(sectionId) {
+        document.querySelectorAll('.section').forEach(section => {
+            section.classList.add('hidden');
+        });
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+            targetSection.classList.remove('hidden');
+            if (sectionId === 'search') {
+                displayPlaylists();
+            }
+        }
+    }
+
+    function displayPlaylists() {
+        const playlistsData = {
+            "message": "Popular Playlists",
+            "playlists": {
+                "items": [
+                    {
+                        "description": "Hottest Hindi music that India is listening to. Cover - Stree 2",
+                        "external_urls": {
+                            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DX0XUfTFmNBRM"
+                        },
+                        "images": [
+                            {
+                                "url": "https://i.scdn.co/image/ab67706f000000023f7b39872b6bb36288c1a52c"
+                            }
+                        ],
+                        "name": "Hot Hits Hindi"
+                    },
+                    {
+                        "description": "Every track you're listening/should be listening to . Cover- Mismatched: Season 3",
+                        "external_urls": {
+                            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DXbVhgADFy3im"
+                        },
+                        "images": [
+                            {
+                                "url": "https://i.scdn.co/image/ab67706f00000002d93cbd1e568dd276197713c6"
+                            }
+                        ],
+                        "name": "Trending Now India"
+                    },
+{
+"description": "Catch all the latest music from artists you follow, plus new singles picked for you. Updates every Friday.",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZEVXbgEPlH7gSxOF"
+        },
+ "images": [
+                            {
+                                "url": "https://newjams-images.scdn.co/image/ab67647800003f8a/dt/v3/release-radar/ab6761610000e5ebaa5350248841ba12e12467af/en"
+                            }
+                        ],
+                        "name": "Release Radar "
+},
+{
+"description": "India's Ultimate Love Playlist. Cover - Bhool Bhulaiyaa 3",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DX14CbVHtvHRB"
+        },
+ "images": [
+                            {
+                                "url": "https://i.scdn.co/image/ab67706f00000002af4db43f9afffbcb374846d6"
+                            }
+                        ],
+                        "name": "Trending Valentine's Hits "
+},
+{
+"description": "Soulful tunes for the heart that has loved and lost. Cover - Tamasha",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DXdFesNN9TzXT"
+        },
+ "images": [
+                            {
+                                "url": "https://i.scdn.co/image/ab67706f0000000257bf14022a44fcd3a6dbd06b"
+                            }
+                        ],
+                        "name": "Sad Hindi Melodies "
+},
+{
+"description": "Catch all the Bhojpuri top hits. Cover: Pawan Singh & Sonam Malik",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DX0GRRvMqlaUS"
+        },
+ "images": [
+                            {
+                                "url": "https://i.scdn.co/image/ab67706f00000002c56b572a2916947c3c774b35"
+                            }
+                        ],
+                        "name": "Hot Hits Bhojpuri"
+},
+{
+"description": "Bollywood crooner's essential songs.",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DWYztMONFqfvX"
+        },
+ "images": [
+                            {
+                                "url": "https://i.scdn.co/image/ab67706f0000000285c716247c24f66ef40f011e"
+                            }
+                        ],
+                        "name": "This Is Arijit Singh"
+},
+{
+"description": "Tune into the Hottest tracks of Kollywood!\nCover : Amaran",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DX1i3hvzHpcQV"
+        },
+ "images": [
+                            {
+                                "url": "https://i.scdn.co/image/ab67706f00000002453c31113720e92985202629"
+                            }
+                        ],
+                        "name": "Hot Hits Tamil"
+},
+                     // Additional playlists can be added here
+                ]
+            }
+        };
+
+        const searchResultsContainer = document.getElementById('search-results');
+        searchResultsContainer.innerHTML = ''; // Clear previous results
+
+        playlistsData.playlists.items.forEach(playlist => {
+            const playlistElement = document.createElement('div');
+            playlistElement.className = 'bg-gray-800 p-5 rounded-lg hover:bg-gray-700 transition';
+            playlistElement.innerHTML = `
+                <img alt="${playlist.name} cover" class="rounded-lg mb-3" src="${playlist.images[0].url}" width="300"/>
+                <div class="font-semibold">${playlist.name}</div>
+                <div class="text-gray-400 text-sm">${playlist.description}</div>
+                <a href="${playlist.external_urls.spotify}" target="_blank" class="text-blue-400">Listen on Spotify</a>
+            `;
+            searchResultsContainer.appendChild(playlistElement);
+        });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        showSection('home');
+    });
+</script>
+</body>
